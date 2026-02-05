@@ -1,0 +1,25 @@
+# Hugging Face Spaces Dockerfile
+# This file is optimized for deploying to Hugging Face Spaces
+# It serves the backend API on port 7860 and includes static frontend files
+
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gcc \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy backend requirements
+COPY backend/requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy backend code
+COPY backend/ .
+
+# Expose port 7860 (Hugging Face Spaces default)
+EXPOSE 7860
+
+# Run the application
+CMD ["python", "-m", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "7860"]
