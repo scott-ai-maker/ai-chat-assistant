@@ -1,3 +1,12 @@
+---
+title: AI Chat Assistant
+emoji: 🤖
+colorFrom: purple
+colorTo: blue
+sdk: docker
+pinned: false
+---
+
 # 🤖 AI Chat Assistant
 
 A modern, cutting-edge AI chat assistant powered by Google's Gemini API with a beautiful dark UI.
